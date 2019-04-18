@@ -1,4 +1,6 @@
-package com.github.wleroux.paxos
+package com.github.wleroux.paxos.acceptor
+
+import com.github.wleroux.paxos.ProposalNumber
 
 
 sealed class AcceptorRequest {

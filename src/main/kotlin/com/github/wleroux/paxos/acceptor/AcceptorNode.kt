@@ -1,9 +1,11 @@
-package com.github.wleroux.paxos
+package com.github.wleroux.paxos.acceptor
 
+import com.github.wleroux.paxos.acceptor.PrepareResponse.*
+import com.github.wleroux.paxos.ProposalNumber
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
-class AcceptorNode(val server: Int): Acceptor {
+class AcceptorNode: Acceptor {
     private var acceptedResponse: Int? = null
     private var currentProposalNumber: ProposalNumber? = null
     private val acceptorMutex = Mutex()
@@ -12,15 +14,12 @@ class AcceptorNode(val server: Int): Acceptor {
             if (currentProposalNumber == null || prepareRequest.proposalNumber > currentProposalNumber) {
                 if (acceptedResponse == null) {
                     currentProposalNumber = prepareRequest.proposalNumber
-                    PrepareResponse.PromisePrepare
+                    PromisePrepare
                 } else {
-                    PrepareResponse.PromiseAccepted(
-                        currentProposalNumber!!,
-                        acceptedResponse!!
-                    )
+                    PromiseAccepted(currentProposalNumber!!, acceptedResponse!!)
                 }
             } else {
-                PrepareResponse.Reject(currentProposalNumber!!)
+                Reject(currentProposalNumber!!)
             }
         }
     }

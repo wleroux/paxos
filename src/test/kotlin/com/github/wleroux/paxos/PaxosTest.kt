@@ -1,8 +1,8 @@
 package com.github.wleroux.paxos
 
-import com.github.wleroux.paxos.AcceptorNode
-import com.github.wleroux.paxos.LearnerNode
-import com.github.wleroux.paxos.ProposerNode
+import com.github.wleroux.paxos.acceptor.AcceptorNode
+import com.github.wleroux.paxos.learner.LearnerNode
+import com.github.wleroux.paxos.proposer.ProposerNode
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
